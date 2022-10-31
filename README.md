@@ -51,3 +51,7 @@ word = self.word_entry.get()
 `https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Spelling%20checker%20program`
 
 ## Video
+
+
+https://user-images.githubusercontent.com/99032604/199130391-d38d60be-34b2-468a-8c12-ca521ac0b685.mp4
+
