@@ -38,10 +38,8 @@ class SpellingCheckerApp:
         else:
             return self.final_words.set(f'Possible words: {spelling_get[0][0]}')
 
-
-       
-
         return self.final_words.set(f'Possible words: {" ".join(word_spelling_list)}')
+        
 root = Tk()
 
 spelling_program = SpellingCheckerApp(root)
