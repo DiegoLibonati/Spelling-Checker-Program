@@ -34,7 +34,7 @@ I made a python program with a user interface made with tkinter. This program al
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Spelling%20checker%20program`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Spelling%20Checker%20Program`
 
 ## Video
 
