@@ -20,21 +20,9 @@ I made a python program with a user interface made with tkinter. This program al
 1. Tkinter
 2. textblob
 
-## Galery
-
-![Spelling-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spellingchecker-0.jpg)
-
-![Spelling-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spellingchecker-1.jpg)
-
-![Spelling-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spellingchecker-2.jpg)
-
-![Spelling-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spellingchecker-3.jpg)
-
-![Spelling-program](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Python/Imagenes/spellingchecker-4.jpg)
-
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Spelling%20Checker%20Program`
+[`https://www.diegolibonati.com.ar/#/project/67`](https://www.diegolibonati.com.ar/#/project/67)
 
 ## Video
 
