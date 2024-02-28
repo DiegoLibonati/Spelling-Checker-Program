@@ -1,10 +1,12 @@
 from tkinter import *
-from tkinter import ttk
+
 from textblob import Word
 
-class SpellingCheckerApp:
 
-    def __init__(self,master):
+class SpellingCheckerApp:
+    def __init__(
+        self, master: Tk
+    ):
         master.title('Spelling Checker')
         master.geometry('1080x350')
         master.config(bg='#B983FF')
@@ -20,24 +22,24 @@ class SpellingCheckerApp:
         Label(font=('Roboto 15'), textvariable=self.final_words, border=1, bg="#B983FF", fg="#fff").place(x=540, y=250, anchor=CENTER)
 
 
-    def load_values(self):
-
+    def load_values(
+        self
+    ) -> None:
         word_spelling_list = []
         word = self.word_entry.get()
 
+        if not word:
+            return self.final_words.set('There are not words load')
+        
         spelling_get = Word(word).spellcheck()
 
-        if word == "":
-            return self.final_words.set('There are not words load')
-
-        if len(spelling_get) > 1:
+        if spelling_get:
             for tupla in spelling_get:
                 for word in tupla:
                     if isinstance(word, str):
                         word_spelling_list.append(word)
         else:
             return self.final_words.set(f'Possible words: {spelling_get[0][0]}')
-
         return self.final_words.set(f'Possible words: {" ".join(word_spelling_list)}')
         
 root = Tk()
