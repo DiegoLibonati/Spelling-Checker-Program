@@ -1,4 +1,4 @@
-# Spelling-Checker-Program
+# Spelling Checker Program
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ I made a python program with a user interface made with tkinter. This program al
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/67`](https://www.diegolibonati.com.ar/#/project/67)
+[`https://www.diegolibonati.com.ar/#/project/Spelling-Checker-Program`](https://www.diegolibonati.com.ar/#/project/Spelling-Checker-Program)
 
 ## Video
 
