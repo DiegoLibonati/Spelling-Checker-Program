@@ -4,8 +4,8 @@
 
 1. Clone the repository
 2. Join to the correct path of the clone
-3. Install requirements.txt
-4. Use `python ./src/app.py` to execute program
+3. Install requirements.txt (Check testing instructions)
+3. Use `python -m src.app` to execute program
 
 ## Description
 
@@ -17,8 +17,17 @@ I made a python program with a user interface made with tkinter. This program al
 
 ## Libraries used
 
-1. Tkinter
-2. textblob
+#### Requirements.txt
+
+```
+No 3rd libraries used.
+```
+
+#### Requirements.test.txt
+
+```
+pytest
+```
 
 ## Portfolio Link
 
@@ -28,28 +37,11 @@ I made a python program with a user interface made with tkinter. This program al
 
 https://user-images.githubusercontent.com/99032604/199130391-d38d60be-34b2-468a-8c12-ca521ac0b685.mp4
 
-## Documentation
+## Testing
 
-The `load_values()` method will have the variables `word_spelling_list` which will be a list where the possible words that the user referred to are stored, `word` will be the variable in which the content of the word that the user typed is obtained and `spelling_get` will be a list in which all possible words will be stored as a tuple:
-
-```
-def load_values(
-    self
-) -> None:
-    word_spelling_list = []
-    word = self.word_entry.get()
-
-    if not word:
-        return self.final_words.set('There are not words load')
-    
-    spelling_get = Word(word).spellcheck()
-
-    if spelling_get:
-        for tupla in spelling_get:
-            for word in tupla:
-                if isinstance(word, str):
-                    word_spelling_list.append(word)
-    else:
-        return self.final_words.set(f'Possible words: {spelling_get[0][0]}')
-    return self.final_words.set(f'Possible words: {" ".join(word_spelling_list)}')
-```
+1. Join to the correct path of the clone
+2. Execute: `python -m venv venv`
+3. Execute in Windows: `venv\Scripts\activate`
+4. Execute: `pip install -r requirements.txt`
+5. Execute: `pip install -r requirements.test.txt`
+6. Execute: `pytest --log-cli-level=INFO`
