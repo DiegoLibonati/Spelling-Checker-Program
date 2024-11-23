@@ -4,8 +4,11 @@
 
 1. Clone the repository
 2. Join to the correct path of the clone
-3. Install requirements.txt (Check testing instructions)
-3. Use `python -m src.app` to execute program
+3. Execute: `python -m venv venv`
+4. Execute in Windows: `venv\Scripts\activate`
+5. Execute: `pip install -r requirements.txt`
+6. Execute: `pip install -r requirements.test.txt`
+7. Use `python -m src.app` to execute program
 
 ## Description
 
@@ -20,7 +23,7 @@ I made a python program with a user interface made with tkinter. This program al
 #### Requirements.txt
 
 ```
-No 3rd libraries used.
+textblob==0.17.1
 ```
 
 #### Requirements.test.txt
@@ -40,8 +43,5 @@ https://user-images.githubusercontent.com/99032604/199130391-d38d60be-34b2-468a-
 ## Testing
 
 1. Join to the correct path of the clone
-2. Execute: `python -m venv venv`
-3. Execute in Windows: `venv\Scripts\activate`
-4. Execute: `pip install -r requirements.txt`
-5. Execute: `pip install -r requirements.test.txt`
-6. Execute: `pytest --log-cli-level=INFO`
+2. Execute in Windows: `venv\Scripts\activate`
+3. Execute: `pytest --log-cli-level=INFO`
