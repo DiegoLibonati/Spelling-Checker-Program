@@ -2,12 +2,12 @@ import logging
 
 from textblob import Word
 
-from src.models.InterfaceApp import InterfaceApp
-from src.utils.constants import SECONDARY
-from src.utils.constants import ERROR_NOT_WORD
+from src.models import InterfaceApp
+from src.utils.constants import ERROR_NOT_WORD, SECONDARY
 
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 CUSTOM_BG = "" or SECONDARY
 
@@ -47,6 +47,7 @@ def test_spell_check_without_word(interface_app: InterfaceApp) -> None:
     final_words = interface_app.final_words
 
     assert final_words.get() == ERROR_NOT_WORD
+
 
 def test_get_words(interface_app: InterfaceApp) -> None:
     list_tuple = [("hi", "1.0"), ("hello", "0.5")]
