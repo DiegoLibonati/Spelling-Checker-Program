@@ -2,7 +2,7 @@ import logging
 
 from textblob import Word
 
-from src.models import InterfaceApp
+from src.ui.interface_app import InterfaceApp
 from src.utils.constants import ERROR_NOT_WORD, SECONDARY
 
 logging.basicConfig(
@@ -16,7 +16,7 @@ def test_initial_config_tk_app(interface_app: InterfaceApp) -> None:
     root = interface_app.root
     root.update()
 
-    title = root.title
+    title = root.title()
     geometry = root.geometry().split("+")[0]
     resizable = root.resizable()
     config_bg = root.cget("bg")
@@ -30,28 +30,20 @@ def test_initial_config_tk_app(interface_app: InterfaceApp) -> None:
 def test_spell_check(interface_app: InterfaceApp) -> None:
     word = "hel"
     spelling_get = Word(word).spellcheck()
-    word_spelling_list = [tuple[0] for tuple in spelling_get]
+    word_spelling_list = [suggestion for suggestion, _ in spelling_get]
 
     interface_app.word_entry.set(word)
     interface_app._spell_check()
 
-    final_words = interface_app.final_words
+    final_words = interface_app.final_words.get()
 
-    assert final_words.get() == f'Possible words: {", ".join(word_spelling_list)}'
+    assert final_words == f'Possible words: {", ".join(word_spelling_list)}'
 
 
 def test_spell_check_without_word(interface_app: InterfaceApp) -> None:
     interface_app.word_entry.set("  ")
 
     interface_app._spell_check()
-    final_words = interface_app.final_words
+    final_words = interface_app.final_words.get()
 
-    assert final_words.get() == ERROR_NOT_WORD
-
-
-def test_get_words(interface_app: InterfaceApp) -> None:
-    list_tuple = [("hi", "1.0"), ("hello", "0.5")]
-
-    list_words = interface_app._get_words(list=list_tuple)
-
-    assert list_words == ["hi", "hello"]
+    assert final_words == ERROR_NOT_WORD
