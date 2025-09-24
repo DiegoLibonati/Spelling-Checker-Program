@@ -1,7 +1,7 @@
 from tkinter import CENTER, Button, Entry, Label, StringVar, Tk
 
-from src.core.spell_checker import check_word
-from src.utils.constants import PRIMARY, ROBOTO_15, ROBOTO_20, SECONDARY, WHITE
+from src.utils.helpers import check_word
+from src.utils.styles import PRIMARY, ROBOTO_15, ROBOTO_20, SECONDARY, WHITE
 
 
 class InterfaceApp:

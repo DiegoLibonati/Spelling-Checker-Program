@@ -3,7 +3,8 @@ import logging
 from textblob import Word
 
 from src.ui.interface_app import InterfaceApp
-from src.utils.constants import ERROR_NOT_WORD, SECONDARY
+from src.utils.messages import MESSAGE_ERROR_NOT_WORD
+from src.utils.styles import SECONDARY
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -46,4 +47,4 @@ def test_spell_check_without_word(interface_app: InterfaceApp) -> None:
     interface_app._spell_check()
     final_words = interface_app.final_words.get()
 
-    assert final_words == ERROR_NOT_WORD
+    assert final_words == MESSAGE_ERROR_NOT_WORD
