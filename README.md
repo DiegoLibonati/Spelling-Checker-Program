@@ -34,7 +34,7 @@ I made a python program with a user interface made with tkinter. This program al
 #### Requirements.txt
 
 ```
-textblob==0.17.1
+pyspellchecker==0.8.3
 pre-commit==4.3.0
 ```
 
@@ -73,7 +73,7 @@ You can generate a standalone executable (`.exe` on Windows, or binary on Linux/
 1. Join to the correct path of the clone
 2. Activate your virtual environment: `venv\Scripts\activate`
 3. Install build dependencies: `pip install -r requirements.build.txt`
-4. Create the executable: `pyinstaller --onefile --windowed src/app.py`
+4. Create the executable: `pyinstaller --onefile --windowed --add-data "venv\Lib\site-packages\spellchecker\resources;spellchecker\resources" src/app.py`
 
 Alternatively, you can run the helper script: `build.bat`
 
@@ -82,7 +82,7 @@ Alternatively, you can run the helper script: `build.bat`
 1. Join to the correct path of the clone
 2. Activate your virtual environment: `source venv/bin/activate`
 3. Install build dependencies: `pip install -r requirements.build.txt`
-4. Create the executable: `pyinstaller --onefile --windowed src/app.py`
+4. Create the executable: `pyinstaller --onefile --windowed --add-data "venv\Lib\site-packages\spellchecker\resources;spellchecker\resources" src/app.py`
 
 Alternatively, you can run the helper script: `./build.sh`
 
