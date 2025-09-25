@@ -1,6 +1,6 @@
 import logging
 
-from textblob import Word
+from spellchecker import SpellChecker
 
 from src.utils.helpers import check_word
 from src.utils.messages import MESSAGE_ERROR_NOT_WORD
@@ -13,12 +13,12 @@ logging.basicConfig(
 def test_check_word_valid():
     word = "hel"
     result = check_word(word)
+    spell = SpellChecker()
 
-    spelling_get = Word(word).spellcheck()
-    expected = [suggestion for suggestion, _ in spelling_get]
+    suggestions = spell.candidates(word)
 
     assert isinstance(result, list)
-    assert result == expected
+    assert result == list(suggestions)
 
 
 def test_check_word_empty_string():

@@ -1,6 +1,6 @@
 import logging
 
-from textblob import Word
+from spellchecker import SpellChecker
 
 from src.ui.interface_app import InterfaceApp
 from src.utils.messages import MESSAGE_ERROR_NOT_WORD
@@ -30,15 +30,16 @@ def test_initial_config_tk_app(interface_app: InterfaceApp) -> None:
 
 def test_spell_check(interface_app: InterfaceApp) -> None:
     word = "hel"
-    spelling_get = Word(word).spellcheck()
-    word_spelling_list = [suggestion for suggestion, _ in spelling_get]
+    spell = SpellChecker()
+
+    suggestions = spell.candidates(word)
 
     interface_app.word_entry.set(word)
     interface_app._spell_check()
 
     final_words = interface_app.final_words.get()
 
-    assert final_words == f'Possible words: {", ".join(word_spelling_list)}'
+    assert final_words == f'Possible words: {", ".join(list(suggestions))}'
 
 
 def test_spell_check_without_word(interface_app: InterfaceApp) -> None:
