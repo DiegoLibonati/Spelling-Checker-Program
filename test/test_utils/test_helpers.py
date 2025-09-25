@@ -10,12 +10,11 @@ logging.basicConfig(
 )
 
 
-def test_check_word_valid():
+def test_check_word_valid(spell_checker: SpellChecker):
     word = "hel"
     result = check_word(word)
-    spell = SpellChecker()
 
-    suggestions = spell.candidates(word)
+    suggestions = spell_checker.candidates(word)
 
     assert isinstance(result, list)
     assert result == list(suggestions)

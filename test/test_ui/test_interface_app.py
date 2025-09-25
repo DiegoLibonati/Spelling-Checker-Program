@@ -28,11 +28,10 @@ def test_initial_config_tk_app(interface_app: InterfaceApp) -> None:
     assert config_bg == CUSTOM_BG
 
 
-def test_spell_check(interface_app: InterfaceApp) -> None:
+def test_spell_check(interface_app: InterfaceApp, spell_checker: SpellChecker) -> None:
     word = "hel"
-    spell = SpellChecker()
 
-    suggestions = spell.candidates(word)
+    suggestions = spell_checker.candidates(word)
 
     interface_app.word_entry.set(word)
     interface_app._spell_check()
