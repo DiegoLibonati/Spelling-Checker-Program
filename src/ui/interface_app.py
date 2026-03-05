@@ -1,56 +1,36 @@
-from tkinter import CENTER, Button, Entry, Label, StringVar, Tk
+from tkinter import Tk
 
+from src.configs.default_config import DefaultConfig
+from src.ui.styles import Styles
+from src.ui.views.main_view import MainView
 from src.utils.helpers import check_word
-from src.utils.styles import PRIMARY, ROBOTO_15, ROBOTO_20, SECONDARY, WHITE
 
 
 class InterfaceApp:
-    def __init__(self, root: Tk, bg: str = SECONDARY) -> None:
-        self.root = root
-        self.root.title("Spelling Checker")
-        self.root.geometry("1080x350")
-        self.root.resizable(False, False)
-        self.root.config(bg=bg)
+    def __init__(self, root: Tk, config: DefaultConfig, styles: Styles = Styles()) -> None:
+        self._styles = styles
+        self._config = config
+        self._root = root
+        self._root.title("Spelling Checker")
+        self._root.geometry("1080x350")
+        self._root.resizable(False, False)
+        self._root.config(background=self._styles.SECONDARY_COLOR)
 
-        self.__create_widgets()
+        self._main_view = MainView(
+            root=self._root,
+            styles=self._styles,
+            on_check=self._spell_check,
+        )
+        self._main_view.grid(row=0, column=0, sticky="nsew")
 
-    def __create_widgets(self) -> None:
-        self.word_entry = StringVar()
-        self.final_words = StringVar()
-
-        Entry(
-            width=50,
-            font=(ROBOTO_20),
-            textvariable=self.word_entry,
-            bg=PRIMARY,
-            fg=WHITE,
-            border=0,
-        ).place(x=540, y=100, anchor=CENTER)
-
-        Button(
-            width=10,
-            text="Check",
-            font=(ROBOTO_15),
-            cursor="hand2",
-            command=self._spell_check,
-            bg=PRIMARY,
-            fg=WHITE,
-            border=0,
-        ).place(x=540, y=180, anchor=CENTER)
-
-        Label(
-            font=(ROBOTO_15),
-            textvariable=self.final_words,
-            border=1,
-            bg=SECONDARY,
-            fg=WHITE,
-        ).place(x=540, y=250, anchor=CENTER)
+        self._root.columnconfigure(0, weight=1)
+        self._root.rowconfigure(0, weight=1)
 
     def _spell_check(self) -> None:
-        word = self.word_entry.get()
+        word = self._main_view.word_entry.get()
         result = check_word(word)
 
         if isinstance(result, str):
-            self.final_words.set(result)
+            self._main_view.set_result(result)
         else:
-            self.final_words.set(f'Possible words: {", ".join(result)}')
+            self._main_view.set_result(f"Possible words: {', '.join(result)}")

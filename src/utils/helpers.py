@@ -1,6 +1,6 @@
 from spellchecker import SpellChecker
 
-from src.utils.messages import MESSAGE_ERROR_NOT_WORD
+from src.constants.messages import MESSAGE_ERROR_NOT_WORD
 
 
 def check_word(word: str) -> list[str] | str:
