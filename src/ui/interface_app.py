@@ -1,8 +1,10 @@
 from tkinter import Tk
 
 from src.configs.default_config import DefaultConfig
+from src.constants.messages import MESSAGE_SUCCESS_POSSIBLE_WORDS
 from src.ui.styles import Styles
 from src.ui.views.main_view import MainView
+from src.utils.dialogs import ValidationDialogError
 from src.utils.helpers import check_word
 
 
@@ -31,6 +33,6 @@ class InterfaceApp:
         result = check_word(word)
 
         if isinstance(result, str):
-            self._main_view.set_result(result)
+            ValidationDialogError(message=result).dialog()
         else:
-            self._main_view.set_result(f"Possible words: {', '.join(result)}")
+            self._main_view.set_result(MESSAGE_SUCCESS_POSSIBLE_WORDS.format(words=", ".join(result)))
