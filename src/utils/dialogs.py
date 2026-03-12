@@ -4,7 +4,7 @@ from typing import Any
 from src.constants.messages import MESSAGE_ERROR_APP, MESSAGE_NOT_FOUND_DIALOG_TYPE
 
 
-class BaseDialog(Exception):  # noqa: N818
+class BaseDialog:
     ERROR = "Error"
     WARNING = "Warning"
     INFO = "Info"
@@ -27,7 +27,6 @@ class BaseDialog(Exception):  # noqa: N818
     def __init__(self, message: str | None = None):
         if message is not None:
             self.message = message
-        super().__init__(self.message)
 
     @property
     def title(self) -> str:
@@ -44,45 +43,48 @@ class BaseDialog(Exception):  # noqa: N818
         handler = self._HANDLERS.get(self.dialog_type)
         if handler is None:
             messagebox.showerror(self.ERROR, MESSAGE_NOT_FOUND_DIALOG_TYPE)
-            return None
-        return handler(self.title, self.message)
+            return
+        handler(self.title, self.message)
 
 
-class ValidationDialogError(BaseDialog):
+class BaseDialogError(BaseDialog, Exception):
     dialog_type = BaseDialog.ERROR
+    message = MESSAGE_ERROR_APP
+
+
+class ValidationDialogError(BaseDialogError):
     message = "Validation error"
 
 
-class AuthenticationDialogError(BaseDialog):
-    dialog_type = BaseDialog.ERROR
+class AuthenticationDialogError(BaseDialogError):
     message = "Authentication error"
 
 
-class NotFoundDialogError(BaseDialog):
-    dialog_type = BaseDialog.ERROR
+class NotFoundDialogError(BaseDialogError):
     message = "Resource not found"
 
 
-class ConflictDialogError(BaseDialog):
-    dialog_type = BaseDialog.ERROR
+class ConflictDialogError(BaseDialogError):
     message = "Conflict error"
 
 
-class BusinessDialogError(BaseDialog):
-    dialog_type = BaseDialog.ERROR
+class BusinessDialogError(BaseDialogError):
     message = "Business rule violated"
 
 
-class InternalDialogError(BaseDialog):
-    dialog_type = BaseDialog.ERROR
+class InternalDialogError(BaseDialogError):
     message = "Internal error"
 
 
-class DeprecatedDialogWarning(BaseDialog):
+class BaseDialogNotification(BaseDialog):
+    pass
+
+
+class DeprecatedDialogWarning(BaseDialogNotification):
     dialog_type = BaseDialog.WARNING
     message = "This feature is deprecated"
 
 
-class SuccessDialogInformation(BaseDialog):
+class SuccessDialogInformation(BaseDialogNotification):
     dialog_type = BaseDialog.INFO
     message = "Operation completed successfully"
