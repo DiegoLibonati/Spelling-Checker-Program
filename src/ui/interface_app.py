@@ -33,6 +33,6 @@ class InterfaceApp:
         result = check_word(word)
 
         if isinstance(result, str):
-            ValidationDialogError(message=result).dialog()
-        else:
-            self._main_view.set_result(MESSAGE_SUCCESS_POSSIBLE_WORDS.format(words=", ".join(result)))
+            raise ValidationDialogError(message=result)
+
+        self._main_view.set_result(MESSAGE_SUCCESS_POSSIBLE_WORDS.format(words=", ".join(result)))
