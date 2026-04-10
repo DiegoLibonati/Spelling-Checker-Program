@@ -1,12 +1,12 @@
 [project]
-name = "spelling-checker-program"
+name = "spell-checker"
 version = "1.0.0"
 description = "I made a python program with a user interface made with tkinter. This program allows to correct the user through an entered word, if the user enters `hell` it will appear words similar to `hell` like `hello` for example."
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
 pythonpath = "."
-testpaths = ["test"]
+testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
