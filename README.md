@@ -1,4 +1,4 @@
-# Spell Checker
+# Word Sentry
 
 ## Educational Purpose
 
@@ -24,7 +24,15 @@ The main goal is to explore and demonstrate best practices, patterns, and techno
 
 ## Description
 
-I made a python program with a user interface made with tkinter. This program allows to correct the user through an entered word, if the user enters `hell` it will appear words similar to `hell` like `hello` for example.
+**Word Sentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library.
+
+The core use case is straightforward: if you are unsure whether a word is spelled correctly, you type it in and the application returns the closest matching words from its dictionary. For example, typing `recieve` will return suggestions like `receive`, helping you quickly find the correct spelling without leaving your workflow.
+
+Under the hood, the application follows a layered architecture that separates concerns cleanly. The UI layer (built with Tkinter) handles user interaction and display, while the business logic lives in utility modules that are fully decoupled from the interface. A centralized error-handling system intercepts exceptions raised anywhere in the callback chain and displays them as user-friendly dialog boxes, so the user always receives meaningful feedback instead of a silent crash.
+
+The application supports multiple environments (`development`, `production`, `testing`) via a config system driven by an `.env` file, making it easy to switch behavior between local development and a deployed executable. It can also be packaged into a standalone binary (`.exe` on Windows or a native binary on Linux/Mac) using PyInstaller, so end users can run it without installing Python.
+
+The project is built with software quality in mind: it includes a full test suite (unit and integration tests with pytest), automated linting and formatting (ruff), pre-commit hooks to enforce code style on every commit, and dependency vulnerability scanning via pip-audit.
 
 ## Technologies used
 
@@ -65,7 +73,7 @@ pyinstaller==6.16.0
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/spell-checker`](https://www.diegolibonati.com.ar/#/project/spell-checker)
+[`https://www.diegolibonati.com.ar/#/project/word-sentry`](https://www.diegolibonati.com.ar/#/project/word-sentry)
 
 ## Testing
 

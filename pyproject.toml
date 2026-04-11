@@ -1,7 +1,7 @@
 [project]
-name = "spell-checker"
+name = "word-sentry"
 version = "1.0.0"
-description = "I made a python program with a user interface made with tkinter. This program allows to correct the user through an entered word, if the user enters `hell` it will appear words similar to `hell` like `hello` for example."
+description = "**Word Sentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library."
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]

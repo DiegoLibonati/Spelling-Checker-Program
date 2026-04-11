@@ -15,7 +15,7 @@ class TestInterfaceApp:
 
     def test_title_is_set(self, root: tk.Tk) -> None:
         InterfaceApp(root=root, config=TestingConfig())
-        assert root.title() == "Spell Checker"
+        assert root.title() == "Word Sentry"
 
     def test_main_view_is_created(self, root: tk.Tk) -> None:
         app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
