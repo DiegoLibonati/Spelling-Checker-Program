@@ -13,7 +13,7 @@ class InterfaceApp:
         self._styles = styles
         self._config = config
         self._root = root
-        self._root.title("Word Sentry")
+        self._root.title("WordSentry")
         self._root.geometry("1080x350")
         self._root.resizable(False, False)
         self._root.config(background=self._styles.SECONDARY_COLOR)

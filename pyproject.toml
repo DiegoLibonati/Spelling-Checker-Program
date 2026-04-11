@@ -1,7 +1,7 @@
 [project]
 name = "word-sentry"
 version = "1.0.0"
-description = "**Word Sentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library."
+description = "**WordSentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library."
 requires-python = ">=3.11"
 
 [tool.pytest.ini_options]
