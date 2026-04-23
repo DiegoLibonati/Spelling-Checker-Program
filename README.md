@@ -1,4 +1,4 @@
-# WordSentry
+# Word Sentry
 
 ## Educational Purpose
 
@@ -24,7 +24,7 @@ The main goal is to explore and demonstrate best practices, patterns, and techno
 
 ## Description
 
-**WordSentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library.
+**Word Sentry** is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time. The application provides a clean and minimal graphical interface where the user types a word into an input field and, upon clicking the check button, receives a list of spelling suggestions powered by the `pyspellchecker` library.
 
 The core use case is straightforward: if you are unsure whether a word is spelled correctly, you type it in and the application returns the closest matching words from its dictionary. For example, typing `recieve` will return suggestions like `receive`, helping you quickly find the correct spelling without leaving your workflow.
 
