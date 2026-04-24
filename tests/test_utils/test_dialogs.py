@@ -1,3 +1,4 @@
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -46,22 +47,22 @@ class TestBaseDialog:
 
     def test_to_dict_contains_dialog_type(self) -> None:
         dialog: BaseDialog = BaseDialog()
-        result = dialog.to_dict()
+        result: dict[str, Any] = dialog.to_dict()
         assert result["dialog_type"] == BaseDialog.ERROR
 
     def test_to_dict_contains_title(self) -> None:
         dialog: BaseDialog = BaseDialog()
-        result = dialog.to_dict()
+        result: dict[str, Any] = dialog.to_dict()
         assert result["title"] == "Error"
 
     def test_to_dict_contains_message(self) -> None:
         dialog: BaseDialog = BaseDialog()
-        result = dialog.to_dict()
+        result: dict[str, Any] = dialog.to_dict()
         assert result["message"] == MESSAGE_ERROR_APP
 
     def test_to_dict_custom_message(self) -> None:
         dialog: BaseDialog = BaseDialog(message="test msg")
-        result = dialog.to_dict()
+        result: dict[str, Any] = dialog.to_dict()
         assert result["message"] == "test msg"
 
     def test_open_calls_showerror(self) -> None:
