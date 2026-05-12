@@ -1,9 +1,12 @@
+import pytest
+
 from src.configs.default_config import DefaultConfig
 from src.configs.development_config import DevelopmentConfig
 
 
+@pytest.mark.unit
 class TestDevelopmentConfig:
-    def test_inherits_default_config(self) -> None:
+    def test_inherits_from_default_config(self) -> None:
         config: DevelopmentConfig = DevelopmentConfig()
 
         assert isinstance(config, DefaultConfig)

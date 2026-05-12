@@ -8,23 +8,24 @@ from src.constants.messages import (
 )
 
 
+@pytest.mark.unit
 class TestMessages:
-    @pytest.mark.parametrize(
-        "constant",
-        [
-            MESSAGE_SUCCESS_POSSIBLE_WORDS,
-            MESSAGE_ERROR_APP,
-            MESSAGE_NOT_VALID_FIELDS,
-            MESSAGE_NOT_FOUND_DIALOG_TYPE,
-        ],
-    )
-    def test_all_constants_are_strings(self, constant: str) -> None:
-        assert isinstance(constant, str)
-
-    def test_success_message_has_words_placeholder(self) -> None:
+    def test_message_success_possible_words_contains_words_placeholder(self) -> None:
         assert "{words}" in MESSAGE_SUCCESS_POSSIBLE_WORDS
 
-    def test_success_message_formats_correctly(self) -> None:
-        result: str = MESSAGE_SUCCESS_POSSIBLE_WORDS.format(words="hello, helo")
+    def test_message_success_formats_with_words(self) -> None:
+        result: str = MESSAGE_SUCCESS_POSSIBLE_WORDS.format(words="hello, world")
 
-        assert "hello, helo" in result
+        assert "hello, world" in result
+
+    def test_message_error_app_is_non_empty_string(self) -> None:
+        assert isinstance(MESSAGE_ERROR_APP, str)
+        assert len(MESSAGE_ERROR_APP) > 0
+
+    def test_message_not_valid_fields_is_non_empty_string(self) -> None:
+        assert isinstance(MESSAGE_NOT_VALID_FIELDS, str)
+        assert len(MESSAGE_NOT_VALID_FIELDS) > 0
+
+    def test_message_not_found_dialog_type_is_non_empty_string(self) -> None:
+        assert isinstance(MESSAGE_NOT_FOUND_DIALOG_TYPE, str)
+        assert len(MESSAGE_NOT_FOUND_DIALOG_TYPE) > 0

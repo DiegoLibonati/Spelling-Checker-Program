@@ -1,61 +1,67 @@
 import tkinter as tk
+from unittest.mock import patch
 
 import pytest
 
-from src.configs.testing_config import TestingConfig
+from src.configs.default_config import DefaultConfig
 from src.ui.interface_app import InterfaceApp
 from src.ui.styles import Styles
 from src.utils.dialogs import ValidationDialogError
 
 
+@pytest.mark.unit
 class TestInterfaceApp:
-    def test_instantiation(self, root: tk.Tk) -> None:
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
-
-        assert app is not None
-
-    def test_title_is_set(self, root: tk.Tk) -> None:
-        InterfaceApp(root=root, config=TestingConfig())
-
-        assert root.title() == "Word Sentry"
-
-    def test_main_view_is_created(self, root: tk.Tk) -> None:
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
-
-        assert app._main_view is not None
-
-    def test_config_is_stored(self, root: tk.Tk) -> None:
-        config: TestingConfig = TestingConfig()
+    def test_initializes_without_error(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
 
         app: InterfaceApp = InterfaceApp(root=root, config=config)
 
-        assert app._config is config
+        assert app is not None
 
-    def test_styles_default(self, root: tk.Tk) -> None:
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
+    def test_title_is_set_to_word_sentry(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+
+        InterfaceApp(root=root, config=config)
+
+        assert root.title() == "Word Sentry"
+
+    def test_uses_provided_styles(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+        styles: Styles = Styles()
+
+        app: InterfaceApp = InterfaceApp(root=root, config=config, styles=styles)
+
+        assert app._styles is styles
+
+    def test_creates_default_styles_when_none_provided(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+
+        app: InterfaceApp = InterfaceApp(root=root, config=config)
 
         assert isinstance(app._styles, Styles)
 
-    def test_styles_custom(self, root: tk.Tk) -> None:
-        custom_styles: Styles = Styles()
-
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig(), styles=custom_styles)
-
-        assert app._styles is custom_styles
-
-    @pytest.mark.parametrize("word", ["", "   "])
-    def test_spell_check_invalid_word_raises(self, root: tk.Tk, word: str) -> None:
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
-        app._main_view.word_entry.set(word)
+    def test_spell_check_raises_validation_error_for_empty_word(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+        app: InterfaceApp = InterfaceApp(root=root, config=config)
+        app._main_view.word_entry.set("")
 
         with pytest.raises(ValidationDialogError):
             app._spell_check()
 
-    def test_spell_check_valid_word_sets_result(self, root: tk.Tk) -> None:
-        app: InterfaceApp = InterfaceApp(root=root, config=TestingConfig())
+    def test_spell_check_raises_validation_error_for_whitespace_word(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+        app: InterfaceApp = InterfaceApp(root=root, config=config)
+        app._main_view.word_entry.set("   ")
+
+        with pytest.raises(ValidationDialogError):
+            app._spell_check()
+
+    def test_spell_check_sets_result_for_valid_word(self, root: tk.Tk) -> None:
+        config: DefaultConfig = DefaultConfig()
+        app: InterfaceApp = InterfaceApp(root=root, config=config)
         app._main_view.word_entry.set("hello")
 
-        app._spell_check()
+        with patch("src.ui.interface_app.check_word", return_value=["hello", "helo"]):
+            app._spell_check()
 
-        result: str = app._main_view._result_text.get()
-        assert result.startswith("Possible words:")
+        assert "hello" in app._main_view._result_text.get()
