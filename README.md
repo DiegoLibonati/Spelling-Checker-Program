@@ -119,6 +119,8 @@ Once tests pass, scan the runtime dependencies for known vulnerabilities using *
 
 With tests green and no critical advisories from the audit, generate a standalone executable (`.exe` on Windows, or binary on Linux/Mac) using **PyInstaller**.
 
+> **Warning:** `app.spec` bundles the repo-level `.env` file into the binary. Before building for production, create a separate `.env.prod` file with your production values, update the `datas` entry in `app.spec` to reference `.env.prod` instead of `.env`, and **never commit real secrets to the repo-level `.env`**.
+
 ### Windows
 
 1. Go to the repository folder

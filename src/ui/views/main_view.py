@@ -1,11 +1,12 @@
-from tkinter import Frame, Label, StringVar, Tk
+from collections.abc import Callable
+from tkinter import Frame, Label, Misc, StringVar
 
 from src.ui.components.word_input import WordInput
 from src.ui.styles import Styles
 
 
 class MainView(Frame):
-    def __init__(self, root: Tk, styles: Styles, on_check: callable) -> None:
+    def __init__(self, root: Misc, styles: Styles, on_check: Callable[[], None]) -> None:
         super().__init__(root, bg=styles.SECONDARY_COLOR)
         self._styles = styles
         self._on_check = on_check

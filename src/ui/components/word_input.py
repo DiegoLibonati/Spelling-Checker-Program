@@ -1,10 +1,13 @@
+from collections.abc import Callable
 from tkinter import Button, Entry, Frame, Misc, StringVar
 
 from src.ui.styles import Styles
 
 
 class WordInput(Frame):
-    def __init__(self, parent: Misc, styles: Styles, variable: StringVar, on_check: callable) -> None:
+    def __init__(
+        self, parent: Misc, styles: Styles, variable: StringVar, on_check: Callable[[], None]
+    ) -> None:
         super().__init__(parent, bg=styles.SECONDARY_COLOR)
         self._styles = styles
         self._variable = variable

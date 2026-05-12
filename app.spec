@@ -1,6 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
-
-block_cipher = None
+# NOTE: The '.env' entry below bundles the repo-level .env into the binary.
+# For production builds, create a separate .env.prod file with real values and
+# replace '.env' here with '.env.prod' before running PyInstaller.
+# Never commit production secrets to the repo-level .env.
 
 a = Analysis(
     ['app.py'],
@@ -16,7 +18,7 @@ a = Analysis(
     optimize=0,
 )
 
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure, a.zipped_data)
 
 exe = EXE(
     pyz,
