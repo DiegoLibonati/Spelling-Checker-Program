@@ -9,11 +9,15 @@ import importlib.util
 _spellchecker_init = importlib.util.find_spec('spellchecker').origin
 _spellchecker_resources = os.path.join(os.path.dirname(_spellchecker_init), 'resources')
 
+_datas = [(_spellchecker_resources, 'spellchecker/resources')]
+if os.path.exists('.env'):
+    _datas.append(('.env', '.'))
+
 a = Analysis(
     ['app.py'],
     pathex=[],
     binaries=[],
-    datas=[(_spellchecker_resources, 'spellchecker/resources'), ('.env', '.')],
+    datas=_datas,
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
