@@ -4,11 +4,16 @@
 # replace '.env' here with '.env.prod' before running PyInstaller.
 # Never commit production secrets to the repo-level .env.
 
+import os
+import importlib.util
+_spellchecker_init = importlib.util.find_spec('spellchecker').origin
+_spellchecker_resources = os.path.join(os.path.dirname(_spellchecker_init), 'resources')
+
 a = Analysis(
     ['app.py'],
     pathex=[],
     binaries=[],
-    datas=[('venv\\Lib\\site-packages\\spellchecker\\resources', 'spellchecker\\resources'), ('.env', '.')],
+    datas=[(_spellchecker_resources, 'spellchecker/resources'), ('.env', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
