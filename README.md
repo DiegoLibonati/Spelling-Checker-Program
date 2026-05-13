@@ -89,7 +89,7 @@ The `.env` file you copied during setup controls which config class the app load
 ENVIRONMENT=development
 ```
 
-There is also an `.env.example.prod` file that mirrors the production defaults — copy it to `.env` when preparing a production build.
+When preparing a production build, set `ENVIRONMENT=production` (and any other production values) directly in `.env`.
 
 ## Testing
 
@@ -117,7 +117,7 @@ Once tests pass, scan the runtime dependencies for known vulnerabilities using *
 
 With tests green and no critical advisories from the audit, generate a standalone executable (`.exe` on Windows, or binary on Linux/Mac) using **PyInstaller**.
 
-> **Warning:** `app.spec` bundles the repo-level `.env` file into the binary. Before building for production, create a separate `.env.prod` file with your production values, update the `datas` entry in `app.spec` to reference `.env.prod` instead of `.env`, and **never commit real secrets to the repo-level `.env`**.
+> **Warning:** `app.spec` bundles the repo-level `.env` file into the binary. Before building for production, set your production values directly in `.env`. **Never commit real secrets to the repo-level `.env`**.
 
 ### Windows
 

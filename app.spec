@@ -1,8 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 # NOTE: The '.env' entry below bundles the repo-level .env into the binary.
-# For production builds, create a separate .env.prod file with real values and
-# replace '.env' here with '.env.prod' before running PyInstaller.
-# Never commit production secrets to the repo-level .env.
+# Set production values directly in .env before running PyInstaller.
+# Never commit real secrets to the repo-level .env.
 
 import os
 import importlib.util
