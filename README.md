@@ -25,14 +25,38 @@ The project is built with software quality in mind: it includes a full test suit
 
 ## Libraries used
 
-All dependencies are declared in `pyproject.toml`. The `requirements*.txt` files are thin wrappers that install the matching extras — use them for backward-compatible muscle memory or CI scripts.
+All dependencies are declared in `pyproject.toml`. The `requirements*.txt` files are thin wrappers that delegate to it.
 
-| Extra | Install command | What it pulls in |
-|-------|-----------------|------------------|
-| runtime | `pip install -e .` | `pyspellchecker`, `python-dotenv` |
-| dev | `pip install -e .[dev]` | `pre-commit`, `pip-audit`, `ruff` |
-| test | `pip install -e .[test]` | `pytest` and plugins |
-| build | `pip install -e .[build]` | `pyinstaller` |
+**Runtime (`[project.dependencies]`)**
+
+```
+pyspellchecker>=0.8
+python-dotenv>=1.0
+```
+
+**Dev (`[project.optional-dependencies] dev`)**
+
+```
+pre-commit>=4.0
+pip-audit>=2.7
+ruff>=0.11
+```
+
+**Test (`[project.optional-dependencies] test`)**
+
+```
+pytest>=8.0
+pytest-env>=1.1
+pytest-cov>=4.1
+pytest-timeout>=2.3
+pytest-xdist>=3.5
+```
+
+**Build (`[project.optional-dependencies] build`)**
+
+```
+pyinstaller>=6.0
+```
 
 ## Getting Started
 
@@ -87,7 +111,7 @@ Once tests pass, scan the runtime dependencies for known vulnerabilities using *
 1. Go to the repository folder
 2. Activate your virtual environment
 3. Execute: `pip install -e .[dev]`
-4. Execute: `pip-audit -r requirements.txt`
+4. Execute: `pip-audit`
 
 ## Build
 
