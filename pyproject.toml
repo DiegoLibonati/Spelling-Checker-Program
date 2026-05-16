@@ -1,6 +1,6 @@
 [project]
 name = "word-sentry"
-version = "1.0.0"
+version = "1.1.0"
 description = "Word Sentry is a desktop application built with Python and Tkinter that helps users identify and correct spelling mistakes in real time."
 requires-python = ">=3.11"
 dependencies = [
