@@ -13,4 +13,4 @@ def check_word(word: str) -> list[str] | str:
 
     suggestions = spell.candidates(word)
 
-    return list(suggestions)
+    return list(suggestions) if suggestions else []
